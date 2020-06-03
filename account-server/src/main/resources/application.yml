@@ -26,9 +26,9 @@ spring:
     cloud:
         alibaba:
             seata:
-                tx-service-group: springcloud_tx_group
+                tx-service-group: fsp_tx_group
     datasource:
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/lj-basic
+        url: jdbc:mysql://localhost:3306/state-account
         username: root
         password: root

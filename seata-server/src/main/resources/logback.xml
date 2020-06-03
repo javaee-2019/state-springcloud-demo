@@ -24,7 +24,7 @@
         </encoder>
     </appender>
 
-    <appender name="seata-default"
+    <appender name="seata-state-server"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/seata-server.log</file>
         <append>true</append>

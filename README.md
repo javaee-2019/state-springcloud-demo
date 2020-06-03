@@ -114,14 +114,14 @@ store {
 ```java
 service {
   #vgroup->rgroup
-  vgroup_mapping.springcloud_tx_group = "default"  修改这里，springcloud_tx_group这个事务组名称是我自定义的，一定要与client端的这个配置一致！否则会报错！
+  vgroup_mapping.fsp_tx_group = "state-server"  修改这里，fsp_tx_group这个事务组名称是我自定义的，一定要与client端的这个配置一致！否则会报错！
   #only support single node
-  default.grouplist = "127.0.0.1:8091"   此配置作用参考:https://blog.csdn.net/weixin_39800144/article/details/100726116
+  state-server.grouplist = "127.0.0.1:8091"   此配置作用参考:https://blog.csdn.net/weixin_39800144/article/details/100726116
   #degrade current not support
   enableDegrade = false
   #disable
   disable = false
-  #unit ms,s,m,h,d represents milliseconds, seconds, minutes, hours, days, default permanent
+  #unit ms,s,m,h,d represents milliseconds, seconds, minutes, hours, days, state-server permanent
   max.commit.retry.timeout = "-1"
   max.rollback.retry.timeout = "-1"
 }
@@ -141,11 +141,11 @@ registry {
   nacos {
     serverAddr = "localhost"
     namespace = ""
-    cluster = "default"
+    cluster = "state-server"
   }
   eureka {
     serviceUrl = "http://localhost:8761/eureka"  修改这里
-    application = "default"  
+    application = "state-server"  
     weight = "1"
   }
   redis {
@@ -153,25 +153,25 @@ registry {
     db = "0"
   }
   zk {
-    cluster = "default"
+    cluster = "state-server"
     serverAddr = "127.0.0.1:2181"
     session.timeout = 6000
     connect.timeout = 2000
   }
   consul {
-    cluster = "default"
+    cluster = "state-server"
     serverAddr = "127.0.0.1:8500"
   }
   etcd3 {
-    cluster = "default"
+    cluster = "state-server"
     serverAddr = "http://localhost:2379"
   }
   sofa {
     serverAddr = "127.0.0.1:9603"
-    application = "default"
+    application = "state-server"
     region = "DEFAULT_ZONE"
     datacenter = "DefaultDataCenter"
-    cluster = "default"
+    cluster = "state-server"
     group = "SEATA_GROUP"
     addressWaitTime = "3000"
   }
@@ -198,14 +198,14 @@ spring:
     cloud:
         alibaba:
             seata:
-                tx-service-group: springcloud_tx_group  这个springcloud_tx_group自定义命名很重要，server，client都要保持一致
+                tx-service-group: fsp_tx_group  这个fsp_tx_group自定义命名很重要，server，client都要保持一致
 ```
 ##### 2.file.conf
 自己新建的项目是没有这个配置文件的，copy过来，修改下面配置：
 ```java
 service {
   #vgroup->rgroup
-  vgroup_mapping.springcloud_tx_group = "default"   这个springcloud_tx_group自定义命名很重要，server，client都要保持一致
+  vgroup_mapping.fsp_tx_group = "state-server"   这个fsp_tx_group自定义命名很重要，server，client都要保持一致
   #only support single node
   default.grouplist = "127.0.0.1:8091"
   #degrade current not support
@@ -226,11 +226,11 @@ registry {
   nacos {
     serverAddr = "localhost"
     namespace = "public"
-    cluster = "default"
+    cluster = "state-server"
   }
   eureka {
     serviceUrl = "http://localhost:8761/eureka"  修改这里
-    application = "default"
+    application = "state-server"
     weight = "1"
   }
   redis {
@@ -238,7 +238,7 @@ registry {
     db = "0"
   }
   zk {
-    cluster = "default"
+    cluster = "state-server"
     serverAddr = "127.0.0.1:2181"
     session.timeout = 6000
     connect.timeout = 2000
@@ -387,7 +387,7 @@ registry {
 ......
   eureka {
     serviceUrl = "http://192.168.xx.xx:8761/eureka"  //两台tcc相同,注册中心的地址
-    application = "default" //两台tc相同
+    application = "state-server" //两台tc相同
     weight = "1"  //权重，截至0.9版本，暂时不支持此参数
   }
  ......

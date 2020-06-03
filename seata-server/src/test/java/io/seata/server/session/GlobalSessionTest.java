@@ -159,7 +159,7 @@ public class GlobalSessionTest {
     static Stream<Arguments> globalSessionProvider() {
         GlobalSession globalSession = new GlobalSession("demo-app", "my_test_tx_group", "test", 6000);
         globalSession.setActive(true);
-        globalSession.addSessionLifecycleListener(new DefaultSessionManager("default"));
+        globalSession.addSessionLifecycleListener(new DefaultSessionManager("state-server"));
         return Stream.of(
                 Arguments.of(
                         globalSession)

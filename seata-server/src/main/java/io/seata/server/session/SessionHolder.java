@@ -49,7 +49,7 @@ public class SessionHolder {
     /**
      * The constant DEFAULT.
      */
-    public static final String DEFAULT = "default";
+    public static final String DEFAULT = "state-server";
 
     /**
      * The constant ROOT_SESSION_MANAGER_NAME.

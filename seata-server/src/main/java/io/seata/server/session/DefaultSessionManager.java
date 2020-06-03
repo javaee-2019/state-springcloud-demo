@@ -31,7 +31,7 @@ import io.seata.server.store.SessionStorable;
  *
  * @author sharajava
  */
-@LoadLevel(name = "default")
+@LoadLevel(name = "state-server")
 public class DefaultSessionManager extends AbstractSessionManager {
 
     /**
